@@ -23,6 +23,8 @@ import kotlin.time.ExperimentalTime
 
 @OptIn(ExperimentalTime::class)
 suspend fun main() {
+    // Initialize used credential scheme
+    // Credential schemes are separate from vck
     Initializer.initWithVCK()
 
     // Create the key material
@@ -39,7 +41,6 @@ suspend fun main() {
     val holder = HolderAgent(keyMaterial = holderKey)
 
     // Create the credential based on the chosen scheme
-    // Credential schemes are separate from vck
     val now = Clock.System.now()
     val pidSubject = EuPidCredential(
         id = holderKey.publicKey.didEncoded,
